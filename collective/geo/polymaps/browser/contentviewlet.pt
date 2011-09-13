@@ -1,0 +1,84 @@
+<div id="cgpolymap" tal:attributes="style view/map_inline_css"> </div>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+function cgpolymap_load(e) {
+  for (var i = 0; i < e.features.length; i++) {
+    var feature = e.features[i];
+    feature.element.setAttribute("id", feature.data.id);
+
+   /* if(feature.data.geometry.type == 'Point') {
+         //alert(feature.data.properties.title);
+         var tl = proj.locationPoint({lon: feature.data.geometry.coordinates[0], lat: feature.data.geometry.coordinates[1]});
+         feature.element.appendChild(po.svg("image")
+             .setAttribute("y", tl.y)
+             .setAttribute("x", tl.x)
+             .setAttribute("width", 16)
+             .setAttribute("height", 16)
+             .setAttributeNS("http://www.w3.org/1999/xlink", "href",feature.data.properties.style.image));
+     };*/
+
+    if (feature.data.geometry.type.indexOf('Polygon') > -1){
+        if(feature.data.properties.style.color != null) {
+            feature.element.setAttribute("style",
+            "fill: #" + feature.data.properties.style.color.substring(0,6) +';' +
+            "fill-opacity:" + (parseInt(feature.data.properties.style.color.substring(6,8),16) / 255) +';'
+            );
+        };
+    };
+
+    if (feature.data.geometry.type.indexOf('Line') > -1){
+        if(feature.data.properties.style.color != null) {
+            feature.element.setAttribute("style",
+            "fill: none; fill-opacity: 0.0; " +
+            "stroke: #" + feature.data.properties.style.color.substring(0,6) +'; ' +
+            "stroke-opacity: " + (parseInt(feature.data.properties.style.color.substring(6,8),16) / 255) +'; ' +
+            "stroke-width: " + feature.data.properties.style.width +';'
+            );
+        };
+    };
+
+    feature.element.setAttribute("class", feature.data.properties.classes);
+
+    feature.element.appendChild(po.svg("title").appendChild(
+          document.createTextNode(feature.data.properties.title)).parentNode);
+
+    feature.element.appendChild(po.svg("description").appendChild(
+          document.createTextNode(feature.data.properties.description)).parentNode);
+
+    feature.element.appendChild(po.svg("link").appendChild(
+          document.createTextNode(feature.data.properties.url)).parentNode)
+
+  };
+}
+/*]]>*/
+</script>
+
+
+<script type="text/javascript" tal:content="view/get_js">
+/*<![CDATA[*/
+
+var po = org.polymaps;
+
+var map = po.map()
+    .container(document.getElementById("cgpolymap").appendChild(po.svg("svg")))
+    .center({lat: 40, lon: -95})
+    .zoomRange([3, 7])
+    .zoom(4)
+    .add(po.interact());
+
+map.add(po.image().url(
+          po.url("http://{S}tile.openstreetmap.org" + "/{Z}/{X}/{Y}.png")
+          .hosts(["a.","b.","c.",""])));
+
+map.add(po.geoJson()
+    .url("http://localhost:8080/Plone/countries/geo-json.json")
+    .on("load", cgpolymap_load));
+
+// this must be called after layer creation otherwise it is not visible
+map.add(po.compass()
+    .pan("none"));
+
+/*]]>*/
+</script>
+

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts" meta_type="JavaScripts Registry"
+   autogroup="False">
+ <javascript cacheable="True" compression="none" cookable="True"
+    enabled="True" expression="" id="polymaps.min.js" inline="False"/>
+ <javascript cacheable="False" compression="safe" cookable="True"
+    enabled="False" expression="" id="polymaps.js" inline="False"/>
+</object>

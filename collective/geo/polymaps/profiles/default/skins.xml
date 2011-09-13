@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<object name="portal_skins" allow_any="False" cookie_persistence="False">
+
+ <object name="cg_polymaps_images"
+    meta_type="Filesystem Directory View"
+    directory="collective.geo.polymaps:skins/cg_polymaps_images"/>
+ <object name="cg_polymaps_styles"
+    meta_type="Filesystem Directory View"
+    directory="collective.geo.polymaps:skins/cg_polymaps_styles"/>
+ <object name="cg_polymapsc_js"
+    meta_type="Filesystem Directory View"
+    directory="collective.geo.polymaps:skins/cg_polymaps_js"/>
+
+ <skin-path name="*" >
+  <layer name="cg_polymaps_images"
+     insert-after="custom"/>
+  <layer name="cg_polymaps_styles"
+     insert-after="custom"/>
+  <layer name="cg_polymaps_js"
+     insert-after="custom"/>
+ </skin-path>
+
+</object>
+
