@@ -8,7 +8,7 @@
  <object name="cg_polymaps_styles"
     meta_type="Filesystem Directory View"
     directory="collective.geo.polymaps:skins/cg_polymaps_styles"/>
- <object name="cg_polymapsc_js"
+ <object name="cg_polymaps_js"
     meta_type="Filesystem Directory View"
     directory="collective.geo.polymaps:skins/cg_polymaps_js"/>
 
