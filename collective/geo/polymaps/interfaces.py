@@ -7,3 +7,6 @@ class ICGPolymapsLayer(IDefaultPloneLayer):
 
 class IJsonPolymapsViewlet(Interface):
     """Marker interface for Viewlet"""
+
+class IPolymapView(Interface):
+     """Marker interface for View"""

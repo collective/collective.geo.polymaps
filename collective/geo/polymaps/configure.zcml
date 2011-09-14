@@ -24,5 +24,11 @@
   <cmf:registerDirectory name="cg_polymaps_js"/>
   <cmf:registerDirectory name="cg_polymaps_styles"/>
 
+  <!-- Register the import step -->
+  <genericsetup:importStep
+      name="collective.geo.polymaps"
+      title="collective.geo.polymaps special import handlers"
+      description=""
+      handler="collective.geo.polymaps.setuphandlers.setupVarious" />
 
 </configure>

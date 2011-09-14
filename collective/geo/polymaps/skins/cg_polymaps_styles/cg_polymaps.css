@@ -55,17 +55,44 @@ svg {
 
 /* default Line and Polygon colors and outlines */
 
-.linestring .multilinestring{
+.point {
+ fill: red;
+ fill-opacity: 0.6;
+ stroke: yellow;
+ stroke-opacity: 0.7;
+}
+
+.multipoint {
+ fill: red;
+ fill-opacity: 0.5;
+ stroke: yellow;
+ stroke-opacity: 0.6;
+}
+
+.linestring {
  fill: none;
  stroke: blue;
  stroke-opacity: 0.9;
 }
 
-.polygon .multipolygon{
+.multilinestring{
+ fill: none;
+ stroke: blue;
+ stroke-opacity: 0.8;
+}
+
+.polygon {
  fill: red;
- fill-opacity: 0.4;
+ fill-opacity: 0.6;
  stroke: yellow;
- stroke-opacity: 0.9;
+ stroke-opacity: 0.7;
+}
+
+.multipolygon{
+ fill: red;
+ fill-opacity: 0.5;
+ stroke: yellow;
+ stroke-opacity: 0.8;
 }
 
 

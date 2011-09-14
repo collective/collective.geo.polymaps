@@ -6,6 +6,17 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="collective.geo.polymaps">
 
+  <include package="plone.app.contentmenu" />
+
+  <browser:menuItem
+      title="Polymap View"
+      for="Products.CMFCore.interfaces.IFolderish"
+      menu="plone_displayviews"
+      action="cg_polymaps_view.html"
+      description="Set Polymaps view."
+      />
+
+
 
   <browser:viewlet
       name="collective.geo.polymaps.jsoncontentviewlet"
@@ -27,5 +38,13 @@
       permission="zope2.View"
   />
 
+  <browser:page
+      name="cg_polymaps_view.html"
+      for="Products.CMFCore.interfaces.IFolderish"
+      class=".mapview.PolymapView"
+      layer = "..interfaces.ICGPolymapsLayer"
+      template = "mapview.pt"
+      permission = "zope2.View"
+      />
 
 </configure>
