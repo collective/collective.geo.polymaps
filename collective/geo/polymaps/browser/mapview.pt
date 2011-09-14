@@ -108,8 +108,9 @@ $(document).ready(function(){
 /*]]>*/
 </script>
 
-<div id="popup-map-feature">
-        <a id="popup-map-featureClose">x</a>
+<div id="popup-map-feature" class="overlaybg overlay">
+    <div id="popup-map-featureClose" class="close"><span>Close</span></div>
+    <div id="cgmpinner">
         <strong id="cgmptitle">Title</strong>
 
         <p id="cgmpcontent">
@@ -117,8 +118,9 @@ $(document).ready(function(){
         </p>
         <a id="cgmplink" href="http://iwlearn.net">read more ...</a>
     </div>
+</div>
 
-    <div id="backgroundPopup"></div>
+<div id="backgroundPopup"></div>
 
 <script type="text/javascript">
 /*<![CDATA[*/
