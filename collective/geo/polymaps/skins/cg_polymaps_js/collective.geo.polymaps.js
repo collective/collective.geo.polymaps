@@ -72,6 +72,7 @@ if (!org.polymaps) org.polymaps = {};
 
 var collective_geo_polymaps_ns = new function() {
     var inital_load = true;
+    var po = org.polymaps;
 
     function bounds(features) {
       var i = -1,
@@ -126,6 +127,7 @@ var collective_geo_polymaps_ns = new function() {
 
        if(feature.data.geometry.type == 'Point') {
                 /* set marker image*/
+                /*
                 var ICONSIZE = 16;
                 var circle = $(feature.element);
                 var root = circle.parent();
@@ -137,6 +139,7 @@ var collective_geo_polymaps_ns = new function() {
                             + '-'+(ICONSIZE/2)+')');
                 root.remove(circle);
                 img.attr('xlink:href', feature.data.properties.style.image);
+                */
          };
 
         if (feature.data.geometry.type.indexOf('Polygon') > -1){
