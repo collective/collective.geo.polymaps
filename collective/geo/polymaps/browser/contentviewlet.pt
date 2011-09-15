@@ -1,4 +1,6 @@
 <div id="cgpolymap" tal:attributes="style view/map_inline_css"> </div>
+<div tal:replace="structure provider:collective.geo.polymaps.js" />
+
 
 <script type="text/javascript">
 /*<![CDATA[*/

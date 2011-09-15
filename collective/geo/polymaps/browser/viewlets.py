@@ -3,20 +3,20 @@ from zope.component import getUtility
 from zope.component import queryAdapter
 from shapely.geometry import asShape
 
+from Products.CMFCore.utils import getToolByName
 from plone.app.layout.viewlets import ViewletBase
 from plone.registry.interfaces import IRegistry
 
 from collective.geo.geographer.interfaces import IGeoreferenced
-
 from collective.geo.settings.interfaces import (
                                         IGeoCustomFeatureStyle,
                                         IGeoFeatureStyle,
                                         IGeoSettings)
 
 from collective.geo.polymaps.interfaces import IJsonPolymapsViewlet
+from utils import INLINE_STYLES, create_map_js
 
-INLINE_STYLES = {'width': 'map_width',
-                 'height': 'map_height'}
+
 
 
 class ContentViewlet(ViewletBase):
@@ -25,43 +25,10 @@ class ContentViewlet(ViewletBase):
     def get_js(self):
         defaultsetting = getUtility(IRegistry).forInterface(IGeoSettings)
         zoom = int(defaultsetting.zoom)
-        context_url = self.context.absolute_url()
         shape = asShape(self.coordinates.geo)
         lat = shape.centroid.y
         lon = shape.centroid.x
-        if not context_url.endswith('/'):
-            context_url += '/'
-        return """
-        /*<![CDATA[*/
-
-        var po = org.polymaps;
-
-        var map = po.map()
-            .container(document.getElementById("cgpolymap").appendChild(po.svg("svg")))
-            .center({lat: %(lat)f, lon: %(lon)f})
-            .zoomRange([1, 18])
-            .zoom(%(zoom)i)
-            .add(po.interact());
-
-        map.add(po.image().url(
-                  po.url("http://{S}tile.openstreetmap.org" + "/{Z}/{X}/{Y}.png")
-                  .hosts(["a.","b.","c.",""])));
-
-        map.add(po.geoJson()
-            .url("%(url)s@@geo-json.json")
-            .on("load", cgpolymap_load));
-
-        // this must be called after layer creation otherwise it is not visible
-        map.add(po.compass()
-            .pan("none"));
-
-        /*]]>*/
-        """  %  {'url': context_url, 'lat': lat, 'lon':lon, 'zoom': zoom}
-
-
-
-    def get_load_js(self):
-        return
+        return create_map_js(self.context, zoom, lon, lat)
 
 
     @property
@@ -101,3 +68,9 @@ class ContentViewlet(ViewletBase):
             return super(ContentViewlet, self).render()
         else:
             return ''
+
+class JSViewlet(ViewletBase):
+
+    @property
+    def portal_url(self):
+        return getToolByName(self.context, 'portal_url')()

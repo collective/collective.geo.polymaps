@@ -17,6 +17,55 @@
       />
 
 
+  <!--browser:viewlet
+      name="collective.geo.polymaps.jsviewlet"
+      for="collective.geo.polymaps.interfaces.IPolymapView"
+      class=".viewlets.JSViewlet"
+      manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+      template="jsviewlet.pt"
+      layer="..interfaces.ICGPolymapsLayer"
+      permission="zope2.View"
+  /-->
+
+
+  <browser:viewletManager
+    name="collective.geo.polymaps.js"
+    provides="..interfaces.IJsManager"
+    class="plone.app.viewletmanager.manager.OrderedViewletManager"
+    layer="..interfaces.ICGPolymapsLayer"
+    permission="zope2.View"
+  />
+
+
+  <!--browser:viewlet
+      name="collective.geo.polymaps.jscontentviewlet"
+      for="collective.geo.polymaps.interfaces.IJsonPolymapsViewlet"
+      class=".viewlets.JSViewlet"
+      manager="collective.geo.polymaps.interfaces.IJsManager"
+      template="jsviewlet.pt"
+      layer="..interfaces.ICGPolymapsLayer"
+      permission="zope2.View"
+  />
+
+  <browser:viewlet
+      name="collective.geo.polymaps.jsviewlet"
+      for="collective.geo.polymaps.interfaces.IPolymapView"
+      class=".viewlets.JSViewlet"
+      manager="collective.geo.polymaps.interfaces.IJsManager"
+      template="jsviewlet.pt"
+      layer="..interfaces.ICGPolymapsLayer"
+      permission="zope2.View"
+  /-->
+
+ <browser:viewlet
+      name="collective.geo.polymaps.jsviewlet"
+      for="*"
+      class=".viewlets.JSViewlet"
+      manager="collective.geo.polymaps.interfaces.IJsManager"
+      template="jsviewlet.pt"
+      layer="..interfaces.ICGPolymapsLayer"
+      permission="zope2.View"
+  />
 
   <browser:viewlet
       name="collective.geo.polymaps.jsoncontentviewlet"

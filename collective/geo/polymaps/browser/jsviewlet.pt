@@ -1,0 +1,2 @@
+<script type="text/javascript" tal:attributes="src string:${view/portal_url}/polymaps.min.js"></script>
+<script type="text/javascript" tal:attributes="src string:${view/portal_url}/collective.geo.polymaps.js"></script>
