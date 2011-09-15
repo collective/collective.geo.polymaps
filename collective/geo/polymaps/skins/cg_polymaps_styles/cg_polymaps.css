@@ -5,7 +5,7 @@
   height: 450px;
 }
 
-svg {
+#cgpolymap svg {
   display: block;
   overflow: hidden;
   width: 100%;
