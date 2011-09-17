@@ -4,10 +4,24 @@ INLINE_STYLES = {'width': 'map_width',
                  'height': 'map_height'}
 
 
-def create_map_js(context, zoom =0, lon=0, lat=0):
+def create_map_js(context, layers, zoom =0, lon=0, lat=0):
     context_url = context.absolute_url()
     if not context_url.endswith('/'):
         context_url += '/'
+    vlt = """
+    '%(name)s': po.geoJson().url("%(url)s").on("load", cgp.load)"""
+    vectorlayers = []
+    for layer in layers:
+        vectorlayers.append(
+        vlt % layer)
+    vectorlayer_js = ','.join(vectorlayers)
+    jlt = """
+        cgp_map.add(vectorlayers["%(name)s"]);
+        """
+    jsonlayer_js = ''
+    for layer in layers:
+        jsonlayer_js += jlt % layer
+
     return """
 /*<![CDATA[*/
 $(document).ready(function() {
@@ -19,7 +33,7 @@ $(document).ready(function() {
         .zoomRange([0, 18])
         .zoom(%(zoom)i)
         .add(po.interact());
-    var layers = {
+    var baselayers = {
         'OpenStreetmap': po.image().url(
             po.url("http://{S}tile.openstreetmap.org" + "/{Z}/{X}/{Y}.png")
             .hosts(["a.","b.","c.",""])).id('11'),
@@ -28,15 +42,18 @@ $(document).ready(function() {
                 .visible(false)
                 .id('12')
     };
-    cgp_map.add(layers["OpenStreetmap"]);
-    cgp_map.add(layers["Blue Marble"]);
-    cgp_map.add(po.geoJson()
-        .url("%(url)s@@geo-json.json")
-        .on("load", cgp.load));
+    cgp_map.add(baselayers["OpenStreetmap"]);
+    cgp_map.add(baselayers["Blue Marble"]);
+    var vectorlayers = {
+    %(vectorlayer)s
+    };
+    %(jsonlayer)s
     cgp_map.add(po.compass()
         .pan("none"));
-    po.switcher(cgp_map, layers, {title : 'Base Layer'})
+    po.switcher(cgp_map, baselayers, {title : 'Base Layer'})
       .container(document.getElementById("layerswitcher"));
+    po.toggler(cgp_map, vectorlayers, {title : 'Vector Layers'})
+      .container(document.getElementById("layertoggler"));
 });
 /*]]>*/
-        """  %  {'url': context_url, 'lat': lat, 'lon':lon, 'zoom': zoom}
+        """  %  {'jsonlayer': jsonlayer_js, 'vectorlayer': vectorlayer_js, 'lat': lat, 'lon':lon, 'zoom': zoom}

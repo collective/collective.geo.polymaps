@@ -8,6 +8,7 @@
 
 <div id="cgpolymap" tal:attributes="style view/map_inline_css"> </div>
 <div id="layerswitcher"></div>
+<div id="layertoggler"></div>
 
 <div id="popup-map-feature" class="overlaybg overlay">
     <div id="popup-map-featureClose" class="close"><span>Close</span></div>

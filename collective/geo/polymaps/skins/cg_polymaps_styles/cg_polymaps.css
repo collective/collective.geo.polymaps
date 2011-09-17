@@ -110,26 +110,9 @@
     width:299px;
 }
 
-#popup-map-feature h1{
-    text-align:left;
-    color:#6FA5FD;
-    font-size:22px;
-    font-weight:700;
-    border-bottom:1px dotted #D3D3D3;
-    padding-bottom:2px;
-margin-bottom:20px;
-}
 
-#popup-map-feature-close{
-    font-size:14px;
-    line-height:14px;
-    right:6px;
-    top:4px;
-    position:absolute;
-    color:#6fa5fd;
-    font-weight:700;
-    display:block;
-}
+
+
 
 
 

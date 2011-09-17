@@ -69,6 +69,12 @@ class ContentViewlet(ViewletBase):
         else:
             return ''
 
+    def layers(self):
+        context_url = self.context.absolute_url()
+        if not context_url.endswith('/'):
+            context_url += '/'
+        return [{'name': self.context.Title(), 'url': context_url + '@@geo-json.json'}]
+
 class JSViewlet(ViewletBase):
 
     @property

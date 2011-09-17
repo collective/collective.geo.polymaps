@@ -62,7 +62,7 @@
       for="*"
       class=".viewlets.JSViewlet"
       manager="collective.geo.polymaps.interfaces.IJsManager"
-      template="jsviewlet.pt"
+      template="templates/jsviewlet.pt"
       layer="..interfaces.ICGPolymapsLayer"
       permission="zope2.View"
   />
@@ -72,7 +72,7 @@
       for="collective.geo.geographer.interfaces.IGeoreferenceable"
       class=".viewlets.ContentViewlet"
       manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-      template="contentviewlet.pt"
+      template="templates/contentviewlet.pt"
       layer="..interfaces.ICGPolymapsLayer"
       permission="zope2.View"
   />
@@ -82,7 +82,7 @@
       for="collective.geo.geographer.interfaces.IGeoreferenceable"
       class=".viewlets.ContentViewlet"
       manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-      template="contentviewlet.pt"
+      template="templates/contentviewlet.pt"
       layer="..interfaces.ICGPolymapsLayer"
       permission="zope2.View"
   />
@@ -92,7 +92,7 @@
       for="Products.CMFCore.interfaces.IFolderish"
       class=".mapview.PolymapView"
       layer = "..interfaces.ICGPolymapsLayer"
-      template = "mapview.pt"
+      template = "templates/mapview.pt"
       permission = "zope2.View"
       />
 
