@@ -28,7 +28,7 @@ class ContentViewlet(ViewletBase):
         shape = asShape(self.coordinates.geo)
         lat = shape.centroid.y
         lon = shape.centroid.x
-        return create_map_js(self.context, zoom, lon, lat)
+        return create_map_js(self.context, self.layers())
 
 
     @property
