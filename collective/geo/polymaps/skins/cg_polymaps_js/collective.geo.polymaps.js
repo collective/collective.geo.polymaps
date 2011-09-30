@@ -202,21 +202,34 @@ var collective_geo_polymaps_ns = new function() {
                 root.remove(circle);
                 img.attr('xlink:href', feature.data.properties.style.image);
                 */
+            if(feature.data.properties.style.fill != null) {
+                feature.element.setAttribute("style",
+                "stroke: #" + feature.data.properties.style.stroke.substring(0,6) +';' +
+                "stroke-opacity: " + (parseInt(feature.data.properties.style.stroke.substring(6,8),16) / 255) +'; ' +
+                "stroke-width: " + feature.data.properties.style.width +'px;' +
+                "fill: #" + feature.data.properties.style.fill.substring(0,6) +';' +
+                "fill-opacity:" + (parseInt(feature.data.properties.style.fill.substring(6,8),16) / 255) +';'
+                );
+            };
          };
 
         if (feature.data.geometry.type.indexOf('Polygon') > -1){
-            if(feature.data.properties.style.color != null) {
+            if(feature.data.properties.style.fill != null) {
                 feature.element.setAttribute("style",
-                "fill: #" + feature.data.properties.style.color.substring(0,6) +';' +
-                "fill-opacity:" + (parseInt(feature.data.properties.style.color.substring(6,8),16) / 255) +';'
+                "stroke: #" + feature.data.properties.style.stroke.substring(0,6) +';' +
+                "stroke-opacity: " + (parseInt(feature.data.properties.style.stroke.substring(6,8),16) / 255) +'; ' +
+                "stroke-width: " + feature.data.properties.style.width +'px;' +
+                "fill: #" + feature.data.properties.style.fill.substring(0,6) +';' +
+                "fill-opacity:" + (parseInt(feature.data.properties.style.fill.substring(6,8),16) / 255) +';'
                 );
             };
         };
 
         if (feature.data.geometry.type.indexOf('Line') > -1){
-            if(feature.data.properties.style.color != null) {
+            if(feature.data.properties.style.stroke != null) {
                 feature.element.setAttribute("style",
-                "stroke-opacity: " + (parseInt(feature.data.properties.style.color.substring(6,8),16) / 255) +'; ' +
+                "stroke: #" + feature.data.properties.style.stroke.substring(0,6) +';' +
+                "stroke-opacity: " + (parseInt(feature.data.properties.style.stroke.substring(6,8),16) / 255) +'; ' +
                 "stroke-width: " + feature.data.properties.style.width +';'
                 );
             };
@@ -250,11 +263,12 @@ var collective_geo_polymaps_ns = new function() {
     //@license: Feel free to use it, but keep this credits please!
     /***************************/
 
+
     var popupStatus = 0;
     function loadPopup(){
         if(popupStatus==0){
             $("#backgroundPopup").css({
-                "opacity": "0.7"
+                "opacity": "0.5"
             });
             $("#backgroundPopup").fadeIn("slow");
             $("#popup-map-feature").fadeIn("slow");
@@ -271,15 +285,10 @@ var collective_geo_polymaps_ns = new function() {
     };
 
     function centerPopup(e){
-        var windowWidth = document.documentElement.clientWidth;
-        var windowHeight = document.documentElement.clientHeight;
-        var popupHeight = $("#popup-map-feature").height();
-        var popupWidth = $("#popup-map-feature").width();
-
         $("#popup-map-feature").css({
-            "position": "absolute",
-            "top": windowHeight/2-popupHeight/2,
-            "left": windowWidth/2-popupWidth/2
+            "position": "fixed",
+            "top":  e.clientY  +"px",
+            "left": e.clientX  +"px"
         });
     };
 

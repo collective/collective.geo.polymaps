@@ -9,7 +9,7 @@ def create_map_js(context, layers, zoom =0, lon=0, lat=0):
     if not context_url.endswith('/'):
         context_url += '/'
     vlt = """
-    '%(name)s': po.geoJson().url("%(url)s").on("load", cgp.load)"""
+    '%(name)s': po.geoJson().url("%(url)s").on("load", cgp.load).id("%(id)s")"""
     vectorlayers = []
     for layer in layers:
         vectorlayers.append(

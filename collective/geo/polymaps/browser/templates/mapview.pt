@@ -6,10 +6,6 @@
   <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
 
-<div id="cgpolymap" tal:attributes="style view/map_inline_css"> </div>
-<div id="layerswitcher"></div>
-<div id="layertoggler"></div>
-
 <div id="popup-map-feature" class="overlaybg overlay">
     <div id="popup-map-featureClose" class="close"><span>Close</span></div>
     <div id="cgmpinner">
@@ -23,6 +19,12 @@
 </div>
 
 <div id="backgroundPopup"></div>
+
+<div id="cgpolymap" tal:attributes="style view/map_inline_css"> </div>
+<div id="layerswitcher"></div>
+<div id="layertoggler"></div>
+
+
 
 <div tal:replace="structure provider:collective.geo.polymaps.js" />
 

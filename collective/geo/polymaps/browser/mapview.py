@@ -35,10 +35,14 @@ class PolymapView(BrowserView):
         context_url = self.context.absolute_url()
         if not context_url.endswith('/'):
             context_url += '/'
-        _layers = [{'name': self.context.Title(), 'url': context_url + '/@@geo-json.json'}]
+        _layers = [{'name': self.context.Title(),
+                    'url': context_url + '/@@geo-json.json',
+                    'id': self.context.getId()}]
         path = '/'.join(self.context.getPhysicalPath())
         query = {'query': path, 'depth': 1}
         for brain in self.context.portal_catalog(path=query,
                                 object_provides=IFolderish.__identifier__):
-            _layers.append({'name': brain.Title, 'url': brain.getURL() + '/@@geo-json.json'})
+            _layers.append({'name': brain.Title,
+                            'url': brain.getURL() + '/@@geo-json.json',
+                            'id': brain.getId})
         return _layers

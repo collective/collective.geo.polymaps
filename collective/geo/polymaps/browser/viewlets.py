@@ -73,7 +73,9 @@ class ContentViewlet(ViewletBase):
         context_url = self.context.absolute_url()
         if not context_url.endswith('/'):
             context_url += '/'
-        return [{'name': self.context.Title(), 'url': context_url + '@@geo-json.json'}]
+        return [{'name': self.context.Title(),
+                'url': context_url + '@@geo-json.json',
+                'id': self.context.getId()}]
 
 class JSViewlet(ViewletBase):
 
