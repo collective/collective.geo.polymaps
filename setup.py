@@ -12,11 +12,18 @@ setup(name='collective.geo.polymaps',
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",
+        "Framework :: Plone",
+        "Framework :: Plone :: 4.0",
+        "Framework :: Plone :: 4.1",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
+        "Topic :: Scientific/Engineering :: GIS",
+        "Development Status :: 4 - Beta",
         ],
       keywords='',
       author='',
       author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      url='http://plone.org/products/collective.geo.polymaps/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective', 'collective.geo'],
@@ -25,6 +32,7 @@ setup(name='collective.geo.polymaps',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'collective.geo.json',
       ],
       entry_points="""
       # -*- Entry points: -*-
