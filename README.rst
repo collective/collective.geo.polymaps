@@ -13,11 +13,9 @@ It is a drop in replacement for collective.geo.mapwidget.
 
 Known issues, limitations and caveats
 
-- It can only display GeoJson, no KML or other formats
-
-- It does not play well with older browsers (especially IE)
-
-- No support for google maplayers
+* It can only display GeoJson, no KML or other formats
+* It does not play well with older browsers (especially IE)
+* No support for google maplayers
 
 
 
@@ -25,7 +23,7 @@ Known issues, limitations and caveats
 Links
 =====
 
-- Code repository: http://svn.plone.org/svn/collective/collective.geo.polymaps/
+- Code repository: https://github.com/collective/collective.geo.polymaps
 - Questions and comments to collectivegeo-discussion@lists.coactivate.org
-- Report bugs at http://plone.org/products/collective.geo.polymaps/issues
+- Report bugs at https://github.com/collective/collective.geo.polymaps/issues
 
