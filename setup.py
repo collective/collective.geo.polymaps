@@ -6,7 +6,7 @@ version = '0.1'
 setup(name='collective.geo.polymaps',
       version=version,
       description="Collective Geo Polymaps integation",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
@@ -21,8 +21,8 @@ setup(name='collective.geo.polymaps',
         "Development Status :: 4 - Beta",
         ],
       keywords='',
-      author='',
-      author_email='',
+      author='Christian Ledermann',
+      author_email='christian.ledermann@gmail.com',
       url='http://plone.org/products/collective.geo.polymaps/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
