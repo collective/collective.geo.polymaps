@@ -20,7 +20,7 @@
       />
 
   <!-- File System Directory Views registration -->
-  <cmf:registerDirectory name="cg_polymaps_images"/>
+  <!--cmf:registerDirectory name="cg_polymaps_images"/-->
   <cmf:registerDirectory name="cg_polymaps_js"/>
   <cmf:registerDirectory name="cg_polymaps_styles"/>
 
